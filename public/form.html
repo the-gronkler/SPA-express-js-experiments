@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheets/form-styles.css">
+    <title>Data Hasher</title>
+
+    <script defer src="javascripts/form-data-validator.js"></script>
+    <script defer src="javascripts/hasher-form-script.js"></script>
+</head>
+
+<body>
+<header>
+    <h1>Awesome form</h1>
+</header>
+
+<main>
+    <form method="POST" novalidate>
+    <div id="name-group" class="form-group">
+            <label for="name">Name</label>
+            <br>
+            <input type="text" name="name" id="name" required>
+            <br>
+            <span id="name.error" class="error-message"></span>
+        </div>
+
+        <div id="phone-number-group" class="form-group">
+            <label for="phone-number">Phone Number (+48)</label>
+            <br>
+            <input type="number" name="phone-number" id="phone-number" required maxlength="9" minlength="9" >
+            <br>
+            <span id="phone-number.error" class="error-message"></span>
+        </div>
+
+        <div id="email-group" class="form-group">
+            <label for="email">Email</label>
+            <br>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <span id="email.error" class="error-message"></span>
+        </div>
+
+        <div id="submit-group">
+            <input type="submit" class="butt">
+            <article id="error-summary" class="error-message"></article>
+        </div>
+        <div id="hash-group">
+            <label for="hash">Hash:</label>
+            <article id="hash">-</article>
+        </div>
+
+
+        <a href="/data">Random Token Generator</a>
+
+    </form>
+
+
+</main>
+</body>
+</html>

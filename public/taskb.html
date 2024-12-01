@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Token Generator</title>
+    <link rel="stylesheet" href="stylesheets/token-generator-styles.css">
+    <script>
+        let countdown = 5;
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/token');
+                const data = await response.json();
+
+                document.getElementById('data').innerHTML = `
+                    <label for="token">Token: </label>
+                    <p id="token">${data.token}</p>
+
+                    <label for="time">Time Generated: </label>
+                    <p id="time">${data.timestamp}</p>
+                `;
+
+                countdown = 5;
+            }
+            catch (error) {
+                console.error(error);
+                alert('An error occurred fetching new token :( Please try again later.');
+            }
+        };
+
+        const updateCountdown = () => {
+            document.getElementById('countdown')
+                .textContent = `Next token in: ${countdown} seconds`;
+            countdown--;
+
+            if (countdown < 0)
+                fetchData();
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchData();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Awesome Token Generator</h1>
+    <div id="data">
+        <!-- token and timestamp  -->
+    </div>
+    <div id="countdown">
+        Loading...
+    </div>
+</div>
+</body>
+</html>
